@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DogsHouseService.Applicatio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DogsHouseService.Infrastructure", "DogsHouseService.Infrastructure\DogsHouseService.Infrastructure.csproj", "{8A70CAF1-82C8-4238-BDBC-BBACF5F255CC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DogsHouseService.SharedKernel", "DogsHouseService.SharedKernel\DogsHouseService.SharedKernel.csproj", "{759F193B-454A-44E0-9A22-56BD5E49D36B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{8A70CAF1-82C8-4238-BDBC-BBACF5F255CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A70CAF1-82C8-4238-BDBC-BBACF5F255CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A70CAF1-82C8-4238-BDBC-BBACF5F255CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{759F193B-454A-44E0-9A22-56BD5E49D36B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{759F193B-454A-44E0-9A22-56BD5E49D36B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{759F193B-454A-44E0-9A22-56BD5E49D36B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{759F193B-454A-44E0-9A22-56BD5E49D36B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
