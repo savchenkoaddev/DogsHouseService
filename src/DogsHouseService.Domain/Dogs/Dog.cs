@@ -1,4 +1,5 @@
-﻿using DogsHouseService.Domain.Dogs.DogNames;
+﻿using DogsHouseService.Domain.Dogs.DogColors;
+using DogsHouseService.Domain.Dogs.DogNames;
 using DogsHouseService.Domain.Dogs.DogWeights;
 using DogsHouseService.Domain.Dogs.TailLengths;
 using DogsHouseService.SharedKernel.Primitives;
@@ -8,7 +9,8 @@ namespace DogsHouseService.Domain.Dogs
 {
     public sealed class Dog : AggregateRoot<DogId>
     {
-        private DogName _dogName;
+        private DogName _name;
+        private DogColor _color;
         private TailLength _tailLength;
         private DogWeight _weight;
 
@@ -19,10 +21,12 @@ namespace DogsHouseService.Domain.Dogs
         private Dog(
             DogId id,
             DogName name,
+            DogColor color,
             TailLength tailLength,
             DogWeight weight) : base(id)
         {
             Name = name;
+            Color = color;
             TailLength = tailLength;
             Weight = weight;
         }
@@ -31,13 +35,27 @@ namespace DogsHouseService.Domain.Dogs
         {
             get
             {
-                return _dogName;
+                return _name;
             }
             private set
             {
                 ArgumentNullException.ThrowIfNull(value, nameof(value));
 
-                _dogName = value;
+                _name = value;
+            }
+        }
+
+        public DogColor Color
+        {
+            get
+            {
+                return _color;
+            }
+            private set
+            {
+                ArgumentNullException.ThrowIfNull(value, nameof(value));
+
+                _color = value;
             }
         }
 
@@ -72,10 +90,11 @@ namespace DogsHouseService.Domain.Dogs
         public static Result<Dog> Create(
             DogId id,
             DogName name,
+            DogColor color,
             TailLength tailLength,
             DogWeight weight)
         {
-            return new Dog(id, name, tailLength, weight);
+            return new Dog(id, name, color, tailLength, weight);
         }
     }
 }
