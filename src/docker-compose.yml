@@ -1,0 +1,20 @@
+services:
+  dogshouseservice-webapi:
+    image: ${DOCKER_REGISTRY-}dogshouseservicewebapi
+    build:
+      context: .
+      dockerfile: DogsHouseService.WebAPI/Dockerfile
+
+  dogshouseservice-database:
+    container_name: dogshouseservice.database
+    image: mcr.microsoft.com/mssql/server:2019-CU32-ubuntu-20.04
+    ports:
+      - "1433:1433"
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=password#12345!
+    volumes:
+      - dogshouseservice_mssqldata:/var/opt/mssql
+
+volumes:
+  dogshouseservice_mssqldata:
