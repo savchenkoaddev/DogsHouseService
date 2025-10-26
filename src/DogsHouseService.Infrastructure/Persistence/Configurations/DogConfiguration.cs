@@ -13,37 +13,41 @@ namespace DogsHouseService.Infrastructure.Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<Dog> builder)
         {
-            builder.HasIndex(q => q.Id)
+            builder.HasKey(dog => dog.Id);
+
+            builder.HasIndex(dog => dog.Id)
                 .IsUnique();
 
-            builder.Property(cs => cs.Id).HasConversion(
+            builder.Property(dog => dog.Id)
+                .ValueGeneratedNever()
+                .HasConversion(
                  id => id.Value,
                  value => new DogId(value));
 
-            builder.Property(q => q.Name)
+            builder.Property(dog => dog.Name)
                 .HasMaxLength(DogName.MaxLength)
                 .IsRequired()
                 .HasConversion(
                     content => content.Value,
                     value => DogName.Create(value).Value);
 
-            builder.HasIndex(d => d.Name)
+            builder.HasIndex(dog => dog.Name)
                 .IsUnique();
 
-            builder.Property(q => q.Color)
+            builder.Property(dog => dog.Color)
                 .HasMaxLength(DogColor.MaxLength)
                 .IsRequired()
                 .HasConversion(
                     content => content.Value,
                     value => DogColor.Create(value).Value);
 
-            builder.Property(q => q.TailLength)
+            builder.Property(dog => dog.TailLength)
                 .IsRequired()
                 .HasConversion(
                     content => content.Value,
                     value => TailLength.Create(value).Value);
 
-            builder.Property(q => q.Weight)
+            builder.Property(dog => dog.Weight)
                 .IsRequired()
                 .HasConversion(
                     content => content.Value,
