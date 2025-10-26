@@ -1,5 +1,5 @@
-
 using DogsHouseService.Infrastructure;
+using DogsHouseService.Infrastructure.Extensions;
 
 namespace DogsHouseService.WebAPI
 {
@@ -27,8 +27,9 @@ namespace DogsHouseService.WebAPI
 
             app.UseAuthorization();
 
-
             app.MapControllers();
+
+            app.ApplyMigrations();
 
             app.Run();
         }
