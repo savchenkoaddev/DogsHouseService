@@ -1,3 +1,4 @@
+using DogsHouseService.Application;
 using DogsHouseService.Infrastructure;
 using DogsHouseService.Infrastructure.Extensions;
 
@@ -13,6 +14,7 @@ namespace DogsHouseService.WebAPI
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            builder.Services.AddApplication();
             builder.Services.AddInfrastructure();
 
             var app = builder.Build();
