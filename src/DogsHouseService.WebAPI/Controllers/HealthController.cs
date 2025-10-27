@@ -7,6 +7,21 @@ namespace DogsHouseService.WebAPI.Controllers
     [ApiController]
     public class HealthController : ControllerBase
     {
+        /// <summary>
+        /// Returns the current version of the Dogshouse service.
+        /// </summary>
+        /// <remarks>
+        /// Example request:
+        /// 
+        ///     GET /ping
+        ///     
+        /// Example response:
+        ///
+        ///     "Dogshouseservice.Version1.0.1"
+        /// </remarks>
+        /// <returns>Plain text string with the service version.</returns>
+        /// <response code="200">Returns the service version string.</response>
+        /// <response code="500">Internal Server Error.</response>
         [HttpGet("ping")]
         [Produces(MediaTypeNames.Text.Plain)]
         [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]

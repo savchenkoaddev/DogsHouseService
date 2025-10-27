@@ -11,5 +11,12 @@ namespace DogsHouseService.Domain.Dogs
         Task<bool> ExistsWithNameAsync(
             DogName name,
             CancellationToken cancellationToken = default);
+
+        Task<List<Dog>> GetAllAsync(
+            string? sortColumn,
+            bool sortAscending,
+            int page,
+            int pageSize,
+            CancellationToken cancellationToken = default);
     }
 }

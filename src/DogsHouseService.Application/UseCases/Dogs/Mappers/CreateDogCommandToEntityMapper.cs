@@ -1,5 +1,5 @@
 ﻿using DogsHouseService.Application.Abstractions.Data;
-using DogsHouseService.Application.UseCases.Dogs.Commands;
+using DogsHouseService.Application.UseCases.Dogs.Commands.CreateDog;
 using DogsHouseService.Domain.Dogs;
 using DogsHouseService.Domain.Dogs.DogColors;
 using DogsHouseService.Domain.Dogs.DogNames;

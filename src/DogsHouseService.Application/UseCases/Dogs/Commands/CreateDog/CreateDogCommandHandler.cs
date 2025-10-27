@@ -3,7 +3,7 @@ using DogsHouseService.Domain.Dogs;
 using DogsHouseService.SharedKernel.Results;
 using MediatR;
 
-namespace DogsHouseService.Application.UseCases.Dogs.Commands
+namespace DogsHouseService.Application.UseCases.Dogs.Commands.CreateDog
 {
     internal sealed class CreateDogCommandHandler
         : IRequestHandler<CreateDogCommand, Result<Guid>>

@@ -4,7 +4,7 @@ using DogsHouseService.Domain.Dogs.DogWeights;
 using DogsHouseService.Domain.Dogs.TailLengths;
 using FluentValidation;
 
-namespace DogsHouseService.Application.UseCases.Dogs.Commands
+namespace DogsHouseService.Application.UseCases.Dogs.Commands.CreateDog
 {
     internal sealed class CreateDogCommandValidator
         : AbstractValidator<CreateDogCommand>
