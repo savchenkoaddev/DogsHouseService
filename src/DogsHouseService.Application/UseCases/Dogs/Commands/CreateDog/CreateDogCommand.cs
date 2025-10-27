@@ -1,7 +1,7 @@
 ﻿using DogsHouseService.SharedKernel.Results;
 using MediatR;
 
-namespace DogsHouseService.Application.UseCases.Dogs.Commands
+namespace DogsHouseService.Application.UseCases.Dogs.Commands.CreateDog
 {
     public sealed record CreateDogCommand(
         string? Name,
