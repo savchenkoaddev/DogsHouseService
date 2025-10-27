@@ -5,7 +5,7 @@ namespace DogsHouseService.Domain.Dogs.DogWeights
 {
     public sealed class DogWeight : ValueObject
     {
-        public const int MinValue = 0;
+        public const int MinValue = 1;
         public const int MaxValue = 200;
 
         private DogWeight(int value)

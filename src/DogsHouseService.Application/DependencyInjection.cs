@@ -1,5 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using DogsHouseService.Application.Extensions.DI;
+﻿using DogsHouseService.Application.Extensions.DI;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace DogsHouseService.Application
 {
@@ -13,6 +13,8 @@ namespace DogsHouseService.Application
             services.AddPipelineBehaviors();
 
             services.AddValidators();
+
+            services.AddMappersFromAssembly(typeof(DependencyInjection).Assembly);
 
             return services;
         }
