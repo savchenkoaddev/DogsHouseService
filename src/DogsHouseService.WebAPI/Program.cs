@@ -3,6 +3,8 @@ using DogsHouseService.Infrastructure;
 using DogsHouseService.Infrastructure.Extensions;
 using DogsHouseService.WebAPI.Extensions;
 using DogsHouseService.WebAPI.Factories;
+using DogsHouseService.Infrastructure.Extensions.DI;
+using DogsHouseService.WebAPI.Options;
 
 namespace DogsHouseService.WebAPI
 {
@@ -23,6 +25,11 @@ namespace DogsHouseService.WebAPI
             builder.Services.AddHttpContextAccessor();
             builder.Services.AddSingleton<ProblemDetailsFactory>();
 
+            builder.Services.ConfigureValidatableOnStartOptions<RateLimitingSettings>();
+            builder.Services.ConfigureValidatableOnStartOptions<DefaultRateLimitingPolicySettings>();
+
+            builder.Services.AddRateLimiting(builder.Configuration);
+
             var app = builder.Build();
 
             if (app.Environment.IsDevelopment())
@@ -33,7 +40,7 @@ namespace DogsHouseService.WebAPI
 
             app.UseHttpsRedirection();
 
-            app.UseAuthorization();
+            app.UseRateLimiter();
 
             app.MapControllers();
 

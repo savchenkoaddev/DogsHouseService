@@ -4,7 +4,7 @@ using Microsoft.Extensions.Options;
 
 namespace DogsHouseService.Infrastructure.Extensions.DI
 {
-    internal static class SharedExtensions
+    public static class SharedExtensions
     {
         public static IServiceCollection ConfigureValidatableOnStartOptions<TOptions>(
            this IServiceCollection services,

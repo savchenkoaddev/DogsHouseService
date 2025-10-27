@@ -1,14 +1,17 @@
 ﻿using DogsHouseService.Application.UseCases.Dogs.Commands.CreateDog;
 using DogsHouseService.Application.UseCases.Dogs.DTO;
 using DogsHouseService.Application.UseCases.Dogs.Queries.GetDogs;
+using DogsHouseService.WebAPI.Extensions;
 using DogsHouseService.WebAPI.Factories;
 using DogsHouseService.WebAPI.Swagger;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 using System.Net.Mime;
 
 namespace DogsHouseService.WebAPI.Controllers
 {
+    [EnableRateLimiting(RateLimitingExtensions.DefaultPolicyName)]
     [ApiController]
     public class DogsController : ControllerBase
     {
@@ -60,6 +63,7 @@ namespace DogsHouseService.WebAPI.Controllers
         /// <param name="pageSize">Page size (default 10)</param>
         /// <response code="200">Returns a paginated list of dogs</response>
         /// <response code="400">Invalid query parameters</response>
+        /// <response code="429" >You have exceeded the allowed number of requests. Please try again later.</response>
         /// <response code="500">Internal Server Error.</response>
         [HttpGet("dogs")]
         [Produces(MediaTypeNames.Application.Json, MediaTypeNames.Application.ProblemJson)]
@@ -107,6 +111,7 @@ namespace DogsHouseService.WebAPI.Controllers
         /// </remarks>
         /// <response code="201">Dog successfully created. Returns the new Dog ID (GUID).</response>
         /// <response code="400">Invalid input, duplicate dog name, or validation failure.</response>
+        /// <response code="429" >You have exceeded the allowed number of requests. Please try again later.</response>
         /// <response code="500">Internal Server Error.</response>
         [HttpPost("dog")]
         [Consumes(MediaTypeNames.Application.Json)]
