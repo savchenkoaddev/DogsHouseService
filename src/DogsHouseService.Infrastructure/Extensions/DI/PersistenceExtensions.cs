@@ -1,5 +1,8 @@
-﻿using DogsHouseService.Infrastructure.Persistence;
+﻿using DogsHouseService.Application.Abstractions.Data;
+using DogsHouseService.Domain.Dogs;
+using DogsHouseService.Infrastructure.Persistence;
 using DogsHouseService.Infrastructure.Persistence.Options;
+using DogsHouseService.Infrastructure.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -11,6 +14,10 @@ namespace DogsHouseService.Infrastructure.Extensions.DI
             this IServiceCollection services)
         {
             services.AddAppDbContext();
+
+            services.AddUnitOfWork();
+
+            services.AddRepositories();
 
             return services;
         }
@@ -28,6 +35,17 @@ namespace DogsHouseService.Infrastructure.Extensions.DI
                 });
 
             return services;
+        }
+
+        private static IServiceCollection AddUnitOfWork(
+            this IServiceCollection services)
+        {
+            return services.AddScoped<IUnitOfWork, UnitOfWork>();
+        }
+
+        public static IServiceCollection AddRepositories(this IServiceCollection services)
+        {
+            return services.AddScoped<IDogRepository, DogRepository>();
         }
     }
 }

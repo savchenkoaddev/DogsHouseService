@@ -1,6 +1,7 @@
 using DogsHouseService.Application;
 using DogsHouseService.Infrastructure;
 using DogsHouseService.Infrastructure.Extensions;
+using DogsHouseService.WebAPI.Factories;
 
 namespace DogsHouseService.WebAPI
 {
@@ -16,6 +17,9 @@ namespace DogsHouseService.WebAPI
 
             builder.Services.AddApplication();
             builder.Services.AddInfrastructure();
+
+            builder.Services.AddHttpContextAccessor();
+            builder.Services.AddSingleton<ProblemDetailsFactory>();
 
             var app = builder.Build();
 
