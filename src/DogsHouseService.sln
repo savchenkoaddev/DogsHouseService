@@ -15,6 +15,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DogsHouseService.SharedKern
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{81DDED9D-158B-E303-5F62-77A2896D2A5A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DogsHouseService.Domain.UnitTests", "..\tests\DogsHouseService.Domain.UnitTests\DogsHouseService.Domain.UnitTests.csproj", "{A8BB1F82-6A02-4E16-BDE3-03FDA876285A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{4A21B719-D0D6-4819-9391-93B0F7F50356}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,9 +51,21 @@ Global
 		{81DDED9D-158B-E303-5F62-77A2896D2A5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{81DDED9D-158B-E303-5F62-77A2896D2A5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{81DDED9D-158B-E303-5F62-77A2896D2A5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8BB1F82-6A02-4E16-BDE3-03FDA876285A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8BB1F82-6A02-4E16-BDE3-03FDA876285A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8BB1F82-6A02-4E16-BDE3-03FDA876285A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8BB1F82-6A02-4E16-BDE3-03FDA876285A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4864396F-D949-4350-B140-7A1D0D6CFC70} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{6AE941D8-88C0-440D-8286-EC7D19618C19} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{9C91BBD2-0BF8-4BF1-9FEA-9AF6BDA83FFF} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{8A70CAF1-82C8-4238-BDBC-BBACF5F255CC} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{759F193B-454A-44E0-9A22-56BD5E49D36B} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{A8BB1F82-6A02-4E16-BDE3-03FDA876285A} = {4A21B719-D0D6-4819-9391-93B0F7F50356}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DD32CA88-06D4-46CA-8E7F-FEE07391C481}

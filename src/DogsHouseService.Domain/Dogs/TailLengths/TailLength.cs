@@ -26,7 +26,7 @@ namespace DogsHouseService.Domain.Dogs.TailLengths
             if (value > MaxLength)
             {
                 return Result.Failure<TailLength>(
-                    TailLengthErrors.TooBig(maxValue: MinLength));
+                    TailLengthErrors.TooBig(maxValue: MaxLength));
             }
 
             return new TailLength(value);
