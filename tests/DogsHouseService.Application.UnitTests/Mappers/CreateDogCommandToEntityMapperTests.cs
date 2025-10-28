@@ -1,9 +1,9 @@
-﻿using DogsHouseService.Application.UseCases.Dogs.Commands.CreateDog;
-using DogsHouseService.Application.UseCases.Dogs.Mappers;
+﻿using DogsHouseService.Application.UseCases.Dogs.Mappers;
 using DogsHouseService.Domain.Dogs.DogColors;
 using DogsHouseService.Domain.Dogs.DogNames;
 using DogsHouseService.Domain.Dogs.DogWeights;
 using DogsHouseService.Domain.Dogs.TailLengths;
+using DogsHouseService.Testing.Shared.Factories;
 using FluentAssertions;
 
 namespace DogsHouseService.Application.UnitTests.Mappers
@@ -21,11 +21,7 @@ namespace DogsHouseService.Application.UnitTests.Mappers
         public void Map_InvalidName_ReturnsFailure()
         {
             // Arrange
-            var command = new CreateDogCommand(
-                Name: "",
-                Color: "Red",
-                TailLength: 50,
-                Weight: 20);
+            var command = CommandFixtureFactory.BuildCreateDogCommand(name: "");
 
             // Act
             var result = _mapper.Map(command);
@@ -38,14 +34,13 @@ namespace DogsHouseService.Application.UnitTests.Mappers
         [Fact]
         public void Map_InvalidColor_ReturnsFailure()
         {
-            var command = new CreateDogCommand(
-                Name: "Doggy",
-                Color: "",
-                TailLength: 50,
-                Weight: 20);
+            // Arrange
+            var command = CommandFixtureFactory.BuildCreateDogCommand(color: "");
 
+            // Act
             var result = _mapper.Map(command);
 
+            // Assert
             result.IsFailure.Should().BeTrue();
             result.Error.Should().Be(DogColorErrors.EmptyValue);
         }
@@ -53,14 +48,14 @@ namespace DogsHouseService.Application.UnitTests.Mappers
         [Fact]
         public void Map_InvalidTailLength_ReturnsFailure()
         {
-            var command = new CreateDogCommand(
-                Name: "Doggy",
-                Color: "Red",
-                TailLength: -1,
-                Weight: 20);
+            // Arrange
+            var command = CommandFixtureFactory.BuildCreateDogCommand(
+                tailLength: TailLength.MinLength - 1);
 
+            // Act
             var result = _mapper.Map(command);
 
+            // Assert
             result.IsFailure.Should().BeTrue();
             result.Error.Should().Be(TailLengthErrors.TooSmall(TailLength.MinLength));
         }
@@ -68,14 +63,14 @@ namespace DogsHouseService.Application.UnitTests.Mappers
         [Fact]
         public void Map_InvalidWeight_ReturnsFailure()
         {
-            var command = new CreateDogCommand(
-                Name: "Doggy",
-                Color: "Red",
-                TailLength: 1,
-                Weight: -20);
+            // Arrange
+            var command = CommandFixtureFactory.BuildCreateDogCommand(
+                weight: DogWeight.MinValue - 1);
 
+            // Act
             var result = _mapper.Map(command);
 
+            // Assert
             result.IsFailure.Should().BeTrue();
             result.Error.Should().Be(DogWeightErrors.TooSmall(DogWeight.MinValue));
         }
@@ -84,11 +79,7 @@ namespace DogsHouseService.Application.UnitTests.Mappers
         public void Map_ValidCommand_ReturnsSuccessDog()
         {
             // Arrange
-            var command = new CreateDogCommand(
-                Name: "Doggy",
-                Color: "Red",
-                TailLength: 1,
-                Weight: 20);
+            var command = CommandFixtureFactory.BuildCreateDogCommand();
 
             // Act
             var result = _mapper.Map(command);

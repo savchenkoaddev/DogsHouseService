@@ -1,11 +1,9 @@
 ﻿using DogsHouseService.Application.Abstractions.Data;
 using DogsHouseService.Application.UseCases.Dogs.Commands.CreateDog;
 using DogsHouseService.Domain.Dogs;
-using DogsHouseService.Domain.Dogs.DogColors;
 using DogsHouseService.Domain.Dogs.DogNames;
-using DogsHouseService.Domain.Dogs.DogWeights;
-using DogsHouseService.Domain.Dogs.TailLengths;
 using DogsHouseService.SharedKernel.Results;
+using DogsHouseService.Testing.Shared.Factories;
 using FluentAssertions;
 using Moq;
 
@@ -33,14 +31,17 @@ namespace DogsHouseService.Application.UnitTests.Handlers
         [Fact]
         public async Task Handle_IfMappingFails_ShouldReturnFailure()
         {
-            var command = new CreateDogCommand("Neo", "Red", 10, 20);
+            // Arrange
+            var command = CommandFixtureFactory.BuildCreateDogCommand();
             var error = DogNameErrors.EmptyValue;
 
             _mapperMock.Setup(m => m.Map(command))
                 .Returns(Result.Failure<Dog>(error));
 
+            // Act
             var result = await _handler.Handle(command, default);
 
+            // Assert
             result.IsFailure.Should().BeTrue();
             result.Error.Should().Be(error);
         }
@@ -48,19 +49,18 @@ namespace DogsHouseService.Application.UnitTests.Handlers
         [Fact]
         public async Task Handle_IfDogWithSameNameExists_ShouldReturnDuplicateNameError()
         {
-            var command = new CreateDogCommand("Neo", "Red", 10, 20);
-            var dog = Dog.Create(new DogId(Guid.NewGuid()),
-                DogName.Create("Neo").Value,
-                DogColor.Create("Red").Value,
-                TailLength.Create(10).Value,
-                DogWeight.Create(20).Value).Value;
+            // Arrange
+            var command = CommandFixtureFactory.BuildCreateDogCommand();
+            var dog = DogFixtureFactory.CreateDog();
 
             _mapperMock.Setup(m => m.Map(command)).Returns(Result.Success(dog));
             _dogRepositoryMock.Setup(r => r.ExistsWithNameAsync(dog.Name, It.IsAny<CancellationToken>()))
                 .ReturnsAsync(true);
 
+            // Act
             var result = await _handler.Handle(command, default);
 
+            // Assert
             result.IsFailure.Should().BeTrue();
             result.Error.Should().Be(DogErrors.DuplicateName(dog.Name));
         }
@@ -68,12 +68,9 @@ namespace DogsHouseService.Application.UnitTests.Handlers
         [Fact]
         public async Task Handle_IfDogIsValid_ShouldInsertDogAndReturnSuccess()
         {
-            var command = new CreateDogCommand("Neo", "Red", 10, 20);
-            var dog = Dog.Create(new DogId(Guid.NewGuid()),
-                DogName.Create("Neo").Value,
-                DogColor.Create("Red").Value,
-                TailLength.Create(10).Value,
-                DogWeight.Create(20).Value).Value;
+            // Arrange
+            var command = CommandFixtureFactory.BuildCreateDogCommand();
+            var dog = DogFixtureFactory.CreateDog();
 
             _mapperMock.Setup(m => m.Map(command)).Returns(Result.Success(dog));
             _dogRepositoryMock.Setup(r => r.ExistsWithNameAsync(dog.Name, It.IsAny<CancellationToken>()))
@@ -85,8 +82,10 @@ namespace DogsHouseService.Application.UnitTests.Handlers
             _unitOfWorkMock.Setup(u => u.SaveChangesAsync(It.IsAny<CancellationToken>()))
                 .ReturnsAsync(1);
 
+            // Act
             var result = await _handler.Handle(command, default);
 
+            // Assert
             result.IsSuccess.Should().BeTrue();
             result.Value.Should().Be(dog.Id.Value);
 

@@ -23,6 +23,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{4A21B719
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DogsHouseService.Application.UnitTests", "..\tests\DogsHouseService.Application.UnitTests\DogsHouseService.Application.UnitTests.csproj", "{588A5A3E-C2C2-4A0D-B8A6-82729621060D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DogsHouseService.Testing.Shared", "..\tests\DogsHouseService.Testing.Shared\DogsHouseService.Testing.Shared.csproj", "{8F9852C1-43B9-42B2-918E-75C004E8E86A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +63,10 @@ Global
 		{588A5A3E-C2C2-4A0D-B8A6-82729621060D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{588A5A3E-C2C2-4A0D-B8A6-82729621060D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{588A5A3E-C2C2-4A0D-B8A6-82729621060D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F9852C1-43B9-42B2-918E-75C004E8E86A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F9852C1-43B9-42B2-918E-75C004E8E86A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F9852C1-43B9-42B2-918E-75C004E8E86A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F9852C1-43B9-42B2-918E-75C004E8E86A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -73,6 +79,7 @@ Global
 		{759F193B-454A-44E0-9A22-56BD5E49D36B} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{A8BB1F82-6A02-4E16-BDE3-03FDA876285A} = {4A21B719-D0D6-4819-9391-93B0F7F50356}
 		{588A5A3E-C2C2-4A0D-B8A6-82729621060D} = {4A21B719-D0D6-4819-9391-93B0F7F50356}
+		{8F9852C1-43B9-42B2-918E-75C004E8E86A} = {4A21B719-D0D6-4819-9391-93B0F7F50356}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DD32CA88-06D4-46CA-8E7F-FEE07391C481}

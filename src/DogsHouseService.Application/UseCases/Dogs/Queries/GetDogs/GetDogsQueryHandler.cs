@@ -13,7 +13,7 @@ namespace DogsHouseService.Application.UseCases.Dogs.Queries.GetDogs
         private readonly Mapper<Dog, DogResponse> _entityMapper;
 
         public GetDogsQueryHandler(
-            IDogRepository dogRepository, 
+            IDogRepository dogRepository,
             Mapper<Dog, DogResponse> entityMapper)
         {
             _dogRepository = dogRepository;

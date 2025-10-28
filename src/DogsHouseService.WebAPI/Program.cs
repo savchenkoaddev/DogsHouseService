@@ -1,9 +1,9 @@
 using DogsHouseService.Application;
 using DogsHouseService.Infrastructure;
 using DogsHouseService.Infrastructure.Extensions;
+using DogsHouseService.Infrastructure.Extensions.DI;
 using DogsHouseService.WebAPI.Extensions;
 using DogsHouseService.WebAPI.Factories;
-using DogsHouseService.Infrastructure.Extensions.DI;
 using DogsHouseService.WebAPI.Options;
 
 namespace DogsHouseService.WebAPI
