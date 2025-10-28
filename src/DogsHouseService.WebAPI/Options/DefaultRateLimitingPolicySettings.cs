@@ -1,6 +1,5 @@
 ﻿using DogsHouseService.Application.Abstractions;
 using System.ComponentModel.DataAnnotations;
-using System.Runtime;
 
 namespace DogsHouseService.WebAPI.Options
 {

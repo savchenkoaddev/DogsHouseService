@@ -1,6 +1,5 @@
 ﻿using DogsHouseService.WebAPI.Options;
 using Microsoft.AspNetCore.RateLimiting;
-using System.Security.Claims;
 using System.Threading.RateLimiting;
 
 namespace DogsHouseService.WebAPI.Extensions

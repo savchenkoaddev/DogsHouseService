@@ -1,4 +1,5 @@
 ﻿using DogsHouseService.Application.UseCases.Dogs.Queries.GetDogs;
+using DogsHouseService.Testing.Shared.Factories;
 using FluentAssertions;
 using FluentValidation.TestHelper;
 
@@ -20,28 +21,26 @@ namespace DogsHouseService.Application.UnitTests.Validators
         [InlineData("")]
         public void Validate_IfOrderIsValid_ShouldNotReturnError(string order)
         {
-            var query = new GetDogsQuery(
-                Attribute: "name",
-                Order: order,
-                PageNumber: 1,
-                PageSize: 10);
+            // Arrange
+            var query = QueryFixtureFactory.BuildGetDogsQuery(order: order);
 
+            // Act
             var result = _validator.TestValidate(query);
 
+            // Assert
             result.ShouldNotHaveValidationErrorFor(x => x.Order);
         }
 
         [Fact]
         public void Validate_IfOrderIsInvalid_ShouldReturnError()
         {
-            var query = new GetDogsQuery(
-                Attribute: "name",
-                Order: "invalid",
-                PageNumber: 1,
-                PageSize: 10);
+            // Arrange
+            var query = QueryFixtureFactory.BuildGetDogsQuery(order: "invalid");
 
+            // Act
             var result = _validator.TestValidate(query);
 
+            // Assert
             result.ShouldHaveValidationErrorFor(x => x.Order);
         }
 
@@ -50,14 +49,14 @@ namespace DogsHouseService.Application.UnitTests.Validators
         [InlineData(0)]
         public void Validate_IfPageNumberIsInvalid_ShouldReturnError(int pageNumber)
         {
-            var query = new GetDogsQuery(
-                Attribute: "name",
-                Order: "asc",
-                PageNumber: pageNumber,
-                PageSize: 10);
+            // Arrange
+            var query = QueryFixtureFactory.BuildGetDogsQuery(
+                pageNumber: pageNumber);
 
+            // Act
             var result = _validator.TestValidate(query);
 
+            // Assert
             result.ShouldHaveValidationErrorFor(x => x.PageNumber);
         }
 
@@ -66,14 +65,14 @@ namespace DogsHouseService.Application.UnitTests.Validators
         [InlineData(0)]
         public void Validate_IfPageSizeIsInvalid_ShouldReturnError(int pageSize)
         {
-            var query = new GetDogsQuery(
-                Attribute: "name",
-                Order: "asc",
-                PageNumber: 1,
-                PageSize: pageSize);
+            // Arrange
+            var query = QueryFixtureFactory.BuildGetDogsQuery(
+                pageSize: pageSize);
 
+            // Act
             var result = _validator.TestValidate(query);
 
+            // Assert
             result.ShouldHaveValidationErrorFor(x => x.PageSize);
         }
 
@@ -89,42 +88,41 @@ namespace DogsHouseService.Application.UnitTests.Validators
         [InlineData("")]
         public void Validate_IfAttributeIsValid_ShouldNotReturnError(string attribute)
         {
-            var query = new GetDogsQuery(
-                Attribute: attribute,
-                Order: "asc",
-                PageNumber: 1,
-                PageSize: 10);
+            // Arrange
+            var query = QueryFixtureFactory.BuildGetDogsQuery(
+                attribute: attribute);
 
+            // Act
             var result = _validator.TestValidate(query);
 
+            // Assert
             result.ShouldNotHaveValidationErrorFor(x => x.Attribute);
         }
 
         [Fact]
         public void Validate_IfAttributeIsInvalid_ShouldReturnError()
         {
-            var query = new GetDogsQuery(
-                Attribute: "unknown",
-                Order: "asc",
-                PageNumber: 1,
-                PageSize: 10);
+            // Arrange
+            var query = QueryFixtureFactory.BuildGetDogsQuery(
+                attribute: "unknown");
 
+            // Act
             var result = _validator.TestValidate(query);
 
+            // Assert
             result.ShouldHaveValidationErrorFor(x => x.Attribute);
         }
 
         [Fact]
         public void Validate_IfAllFieldsAreValid_ShouldNotReturnError()
         {
-            var query = new GetDogsQuery(
-                Attribute: "name",
-                Order: "asc",
-                PageNumber: 1,
-                PageSize: 10);
+            // Arrange
+            var query = QueryFixtureFactory.BuildGetDogsQuery();
 
+            // Act
             var result = _validator.TestValidate(query);
 
+            // Assert
             result.IsValid.Should().BeTrue();
         }
     }

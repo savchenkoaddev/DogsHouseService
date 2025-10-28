@@ -15,7 +15,7 @@ namespace DogsHouseService.Infrastructure.Persistence.Repositories
         }
 
         public async Task<bool> ExistsWithNameAsync(
-            DogName name, 
+            DogName name,
             CancellationToken cancellationToken = default)
         {
             return await _dbContext.Dogs
@@ -23,7 +23,7 @@ namespace DogsHouseService.Infrastructure.Persistence.Repositories
         }
 
         public async Task InsertAsync(
-            Dog dog, 
+            Dog dog,
             CancellationToken cancellationToken = default)
         {
             await _dbContext.Dogs.AddAsync(
@@ -32,10 +32,10 @@ namespace DogsHouseService.Infrastructure.Persistence.Repositories
         }
 
         public async Task<List<Dog>> GetAllAsync(
-            string? sortColumn, 
-            bool sortAscending, 
-            int page, 
-            int pageSize, 
+            string? sortColumn,
+            bool sortAscending,
+            int page,
+            int pageSize,
             CancellationToken cancellationToken = default)
         {
             IQueryable<Dog> dogsQuery = _dbContext.Dogs;

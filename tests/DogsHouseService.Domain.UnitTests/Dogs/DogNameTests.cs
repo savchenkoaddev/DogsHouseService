@@ -1,6 +1,5 @@
 ﻿using DogsHouseService.Domain.Dogs.DogColors;
 using DogsHouseService.Domain.Dogs.DogNames;
-using DogsHouseService.SharedKernel.Results;
 using FluentAssertions;
 
 namespace DogsHouseService.Domain.UnitTests.Dogs

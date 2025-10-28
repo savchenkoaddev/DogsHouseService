@@ -2,6 +2,7 @@
 using DogsHouseService.Domain.Dogs.DogNames;
 using DogsHouseService.Domain.Dogs.DogWeights;
 using DogsHouseService.Domain.Dogs.TailLengths;
+using DogsHouseService.Testing.Shared.Factories;
 using FluentAssertions;
 using FluentValidation.TestHelper;
 
@@ -19,113 +20,109 @@ namespace DogsHouseService.Application.UnitTests.Validators
         [Fact]
         public void Validate_IfNameIsEmpty_ShouldReturnError()
         {
-            var command = new CreateDogCommand(
-                Name: "",
-                Color: "Red",
-                TailLength: 10,
-                Weight: 20);
+            // Arrange
+            var command = CommandFixtureFactory.BuildCreateDogCommand(name: "");
 
+            // Act
             var result = _validator.TestValidate(command);
 
+            // Assert
             result.ShouldHaveValidationErrorFor(x => x.Name);
         }
 
         [Fact]
         public void Validate_IfNameLengthExceededMaxLength_ShouldReturnTooLongError()
         {
+            // Arrange
             var longName = new string('a', DogName.MaxLength + 1);
-            var command = new CreateDogCommand(
-                Name: longName,
-                Color: "Red",
-                TailLength: 10,
-                Weight: 20);
+            var command = CommandFixtureFactory.BuildCreateDogCommand(name: longName);
 
+            // Act
             var result = _validator.TestValidate(command);
 
+            // Assert
             result.ShouldHaveValidationErrorFor(x => x.Name);
         }
 
         [Fact]
         public void Validate_IfColorIsEmpty_ShouldReturnError()
         {
-            var command = new CreateDogCommand(
-                Name: "Neo",
-                Color: "",
-                TailLength: 10,
-                Weight: 20);
+            // Arrange
+            var command = CommandFixtureFactory.BuildCreateDogCommand(color: "");
 
+            // Act
             var result = _validator.TestValidate(command);
 
+            // Assert
             result.ShouldHaveValidationErrorFor(x => x.Color);
         }
 
         [Fact]
         public void Validate_IfTailLengthBelowMinimum_ShouldReturnTooSmallError()
         {
-            var command = new CreateDogCommand(
-                Name: "Neo",
-                Color: "Red",
-                TailLength: TailLength.MinLength - 1,
-                Weight: 20);
+            // Arrange
+            var command = CommandFixtureFactory.BuildCreateDogCommand(
+                tailLength: TailLength.MinLength - 1);
 
+            // Act
             var result = _validator.TestValidate(command);
 
+            // Assert
             result.ShouldHaveValidationErrorFor(x => x.TailLength);
         }
 
         [Fact]
         public void Validate_IfTailLengthAboveMaximum_ShouldReturnTooBigError()
         {
-            var command = new CreateDogCommand(
-                Name: "Neo",
-                Color: "Red",
-                TailLength: TailLength.MaxLength + 1,
-                Weight: 20);
+            // Arrange
+            var command = CommandFixtureFactory.BuildCreateDogCommand(
+                tailLength: TailLength.MaxLength + 1);
 
+            // Act
             var result = _validator.TestValidate(command);
 
+            // Assert
             result.ShouldHaveValidationErrorFor(x => x.TailLength);
         }
 
         [Fact]
         public void Validate_IfWeightBelowMinimum_ShouldReturnTooSmallError()
         {
-            var command = new CreateDogCommand(
-                Name: "Neo",
-                Color: "Red",
-                TailLength: 10,
-                Weight: DogWeight.MinValue - 1);
+            // Arrange
+            var command = CommandFixtureFactory.BuildCreateDogCommand(
+                weight: DogWeight.MinValue - 1);
 
+            // Act
             var result = _validator.TestValidate(command);
 
+            // Assert
             result.ShouldHaveValidationErrorFor(x => x.Weight);
         }
 
         [Fact]
         public void Validate_IfWeightAboveMaximum_ShouldReturnTooBigError()
         {
-            var command = new CreateDogCommand(
-                Name: "Neo",
-                Color: "Red",
-                TailLength: 10,
-                Weight: DogWeight.MaxValue + 1);
+            // Arrange
+            var command = CommandFixtureFactory.BuildCreateDogCommand(
+                weight: DogWeight.MaxValue + 1);
 
+            // Act
             var result = _validator.TestValidate(command);
 
+            // Assert
             result.ShouldHaveValidationErrorFor(x => x.Weight);
         }
 
         [Fact]
         public void Validate_IfAllFieldsAreValid_ShouldNotReturnError()
         {
-            var command = new CreateDogCommand(
-                Name: "Neo",
-                Color: "Red",
-                TailLength: 10,
-                Weight: 20);
+            // Arrange
+            var command = CommandFixtureFactory.BuildCreateDogCommand();
 
+            // Act
             var result = _validator.TestValidate(command);
 
+            // Assert
             result.IsValid.Should().BeTrue();
         }
     }
