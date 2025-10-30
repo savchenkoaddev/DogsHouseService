@@ -4,6 +4,7 @@ using DogsHouseService.Infrastructure.Extensions;
 using DogsHouseService.Infrastructure.Extensions.DI;
 using DogsHouseService.WebAPI.Extensions;
 using DogsHouseService.WebAPI.Factories;
+using DogsHouseService.WebAPI.Middleware;
 using DogsHouseService.WebAPI.Options;
 
 namespace DogsHouseService.WebAPI
@@ -31,6 +32,8 @@ namespace DogsHouseService.WebAPI
             builder.Services.AddRateLimiting(builder.Configuration);
 
             var app = builder.Build();
+
+            app.UseExceptionHandlingMiddleware();
 
             if (app.Environment.IsDevelopment())
             {
